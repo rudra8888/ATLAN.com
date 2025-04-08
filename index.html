@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rudra - Your Trusted Destination | www.rudra.com</title>
+    <meta name="description" content="Welcome to Rudra - Your premier destination for excellence and innovation. Visit www.rudra.com for quality services and products.">
+    <meta name="keywords" content="rudra, www.rudra.com, rudra website, rudra services, rudra products">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rudra.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .welcome-content {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .welcome-text {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://source.unsplash.com/1600x900/?temple,india') center/cover;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+
+        .header > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            background: rgba(51, 51, 51, 0.95);
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin: 60px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .place-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .place-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .place-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .place-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .place-card-content {
+            padding: 15px;
+        }
+
+        .place-card-content h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .place-card-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .place-card-content ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .place-card-content ul li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+        }
+
+        .essentials-list {
+            list-style: none;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .essentials-list li {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .essentials-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .essentials-list li i {
+            color: #e67e22;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #e67e22, #e74c3c, #3498db);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .essentials-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="welcome-overlay">
+        <div class="welcome-content">
+            <div class="avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-full h-full">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                </svg>
+            </div>
+            <h1 class="welcome-text text-5xl font-bold mb-4">Welcome!</h1>
+            <p class="welcome-text text-xl">Hello Rudra, Malav, Rakesh, and Trupti!</p>
+        </div>
+    </div>
+    <header class="header">
+        <h1>Welcome to Rudra</h1>
+        <p>Your Trusted Partner in Excellence</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#rameshwaram">Rameshwaram</a></li>
+            <li><a href="#madurai">Madurai</a></li>
+            <li><a href="#temples">Famous Temples</a></li>
+            <li><a href="#family-trip">Family Trip</a></li>
+            <li><a href="#essentials">Travel Essentials</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="rameshwaram" class="section">
+            <h2>Rameshwaram</h2>
+            <p>Rameshwaram, one of the holiest places in India, is located on Pamban Island in Tamil Nadu. It is famous for its magnificent temples and pristine beaches.</p>
+            <div class="place-grid">
+                <div class="place-card">
+                    <img src="https://source.unsplash.com/800x600/?rameshwaram,temple" alt="Ramanathaswamy Temple">
+                    <div class="place-card-content">
+                        <h3>Ramanathaswamy Temple</h3>
+                        <p>One of the most revered Char Dham pilgrimage sites, known for its magnificent corridors and 22 holy water tanks.</p>
+                    </div>
+                </div>
+                <div class="place-card">
+                    <img src="https://source.unsplash.com/800x600/?beach,india" alt="Dhanushkodi Beach">
+                    <div class="place-card-content">
+                        <h3>Dhanushkodi Beach</h3>
+                        <p>A pristine beach where the Bay of Bengal meets the Indian Ocean, offering stunning views and rich history.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="madurai" class="section">
+            <h2>Madurai</h2>
+            <p>Madurai, often referred to as the 'Athens of the East', is known for its rich cultural heritage and historic temples.</p>
+            <div class="place-grid">
+                <div class="place-card">
+                    <img src="https://source.unsplash.com/800x600/?madurai,temple" alt="Meenakshi Temple">
+                    <div class="place-card-content">
+                        <h3>Meenakshi Amman Temple</h3>
+                        <p>A historic Hindu temple dedicated to Goddess Meenakshi, known for its stunning architecture and colorful sculptures.</p>
+                    </div>
+                </div>
+                <div class="place-card">
+                    <img src="https://source.unsplash.com/800x600/?palace,india" alt="Thirumalai Nayakkar Palace">
+                    <div class="place-card-content">
+                        <h3>Thirumalai Nayakkar Palace</h3>
+                        <p>A 17th-century palace showcasing Indo-Saracenic architecture with massive pillars and ornate arches.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="temples" class="section">
+            <h2>Famous Temples to Visit</h2>
+            <p>Explore these sacred temples during your spiritual journey through Rameshwaram and Madurai.</p>
+            <div class="place-grid">
+                <div class="place-card">
+                    <img src="https://source.unsplash.com/800x600/?hindu,temple" alt="Temples">
+                    <div class="place-card-content">
+                        <h3>Must-Visit Temples</h3>
+                        <ul>
+                            <li>Ramanathaswamy Temple - Rameshwaram</li>
+                            <li>Meenakshi Amman Temple - Madurai</li>
+                            <li>Pamban Swamy Temple - Rameshwaram</li>
+                            <li>Koodal Azhagar Temple - Madurai</li>
+                            <li>Arulmigu Ramanathaswamy Temple - Rameshwaram</li>
+                            <li>Kallazhagar Temple - Madurai</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="family-trip" class="section">
+            <h2>Our Family Trip</h2>
+            <p>A special spiritual journey planned for our family of four, combining devotion, culture, and bonding.</p>
+            
+            <div class="place-grid">
+                <div class="place-card">
+                    <div class="place-card-content">
+                        <h3>Meet the Family</h3>
+                        <ul>
+                            <li>Rudra - The spiritual guide of the family</li>
+                            <li>Malav - The enthusiastic explorer</li>
+                            <li>Rakesh - The family photographer</li>
+                            <li>Trupti - The cultural enthusiast</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="place-card">
+                    <div class="place-card-content">
+                        <h3>Trip Highlights</h3>
+                        <ul>
+                            <li>Morning prayers at Ramanathaswamy Temple</li>
+                            <li>Holy dip in Agni Theertham</li>
+                            <li>Visit to all 22 sacred wells</li>
+                            <li>Sunset at Dhanushkodi Beach</li>
+                            <li>Family dinner with local delicacies</li>
+                            <li>Shopping for religious artifacts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="essentials" class="section">
+            <h2>Travel Essentials</h2>
+            <ul class="essentials-list">
+                <li><i class="fas fa-tshirt"></i>Comfortable cotton clothes for temple visits</li>
+                <li><i class="fas fa-pray"></i>Traditional wear (dhoti/saree) for ceremonies</li>
+                <li><i class="fas fa-sun"></i>Sunscreen and hat for sun protection</li>
+                <li><i class="fas fa-bottle-water"></i>Water bottle and light snacks</li>
+                <li><i class="fas fa-camera"></i>Camera for capturing memories</li>
+                <li><i class="fas fa-first-aid"></i>Basic first-aid kit</li>
+                <li><i class="fas fa-battery-full"></i>Power bank and chargers</li>
+                <li><i class="fas fa-wallet"></i>Cash for offerings and purchases</li>
+                <li><i class="fas fa-jacket"></i>Light jacket for evening weather</li>
+                <li><i class="fas fa-shoe-prints"></i>Comfortable walking shoes</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ahmedabad to Rameshwaram. All rights reserved.</p>
+    </footer>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out'
+                }
+            }
+        });
+
+        gsap.to('.avatar', {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: 'back.out(1.7)',
+            delay: 0.5
+        });
+
+        gsap.to('.welcome-text', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.3,
+            ease: 'power3.out',
+            delay: 1
+        });
+
+        setTimeout(() => {
+            gsap.to('.welcome-overlay', {
+                opacity: 0,
+                duration: 1,
+                delay: 3,
+                onComplete: () => {
+                    document.querySelector('.welcome-overlay').style.display = 'none';
+                }
+            });
+        }, 4000);
+    </script>
+</body>
+</html>
